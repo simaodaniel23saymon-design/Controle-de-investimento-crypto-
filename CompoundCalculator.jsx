@@ -10,6 +10,8 @@ export default function CompoundCalculator({ onResult }) {
     const r = parseFloat(rate) / 100;
     const t = parseFloat(time);
 
+    if (isNaN(P) || isNaN(r) || isNaN(t)) return;
+
     const final = P * Math.pow(1 + r, t);
     const profit = final - P;
 
@@ -26,7 +28,7 @@ export default function CompoundCalculator({ onResult }) {
       <input className="w-full p-2 rounded mb-2 text-black" placeholder="Taxa (%)"
         value={rate} onChange={e=>setRate(e.target.value)} />
 
-      <input className="w-full p-2 rounded mb-2 text-black" placeholder="Períodos"
+      <input className="w-full p-2 rounded mb-2 text-black" placeholder="Períodos (anos)"
         value={time} onChange={e=>setTime(e.target.value)} />
 
       <button onClick={calculate}
